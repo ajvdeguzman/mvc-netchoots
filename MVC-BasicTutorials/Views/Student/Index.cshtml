@@ -1,4 +1,6 @@
-﻿@model IEnumerable<MVC_BasicTutorials.Models.Student>
+﻿@using MVC_BasicTutorials.Models
+
+@model IEnumerable<MVC_BasicTutorials.Models.Student>
 
 @{
     ViewBag.Title = "Index";
@@ -26,6 +28,16 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.StudentName)
+            
+            @* @Html.TextArea("Description", null, new { @class = "form-control" }) *@
+            @Html.TextBoxFor(m => item.StudentName, new { @class = "form-control" })            
+            @Html.TextAreaFor(m => item.Description, new { @class = "form-control" }) 
+            Is Enrolled? @Html.CheckBoxFor(m => item.isNewlyEnrolled)
+            <br />
+            Gender -- Male: @Html.RadioButtonFor(m => item.StudentGender, "Male") Female: @Html.RadioButtonFor(m => item.StudentGender, "Female")
+            @Html.DropDownListFor(m => item.StudentGender, new SelectList(Enum.GetValues(typeof(Gender))), "Select Gender")
+            @Html.HiddenFor(m => item.StudentId)
+            @Html.PasswordFor(m => item.Password)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Age)
